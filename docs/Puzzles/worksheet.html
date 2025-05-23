@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Worksheet #3605251</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .input-section {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            margin-right: 10px;
+        }
+        .error {
+            color: red;
+            display: none;
+        }
+        .success {
+            color: green;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Find Current at 0 Charge Capacitor</h2>
+        <h3><em>Division is Easy</em></h3>
+        <p>Worksheet #3605251</p>
+        <img src="worksheet.png" alt="Worksheet Image">
+        <div class="input-section">
+            <input type="text" id="answer" placeholder="Enter your answer">
+            <button onclick="checkAnswer()">Submit</button>
+            <p class="error" id="error">Incorrect answer. Please try again.</p>
+            <p class="success" id="success"> <meta http-equiv='refresh' content='0; URL=http:/github.scienceacademy.com/----***7/'>.</p>
+        </div>
+    </div>
+
+    <script>
+        const correctHash = "bd804cde0d2fe1887cb6ac116a76f6d4a2e5c2490f29aeaa404fc68ce7e75096";
+
+        async function checkAnswer() {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(document.getElementById("answer").value);
+            const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+            const error = document.getElementById("error");
+            const success = document.getElementById("success");
+
+            if (hashHex === correctHash) {
+                error.style.display = "none";
+                success.style.display = "block";
+            } else {
+                success.style.display = "none";
+                error.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
